@@ -1,0 +1,12 @@
+{
+  "name": "source-reload",
+  "version": "1.0.0",
+  "description": "> Make Love, Not Warcraft",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Erdem Bircan",
+  "license": "MIT"
+}
