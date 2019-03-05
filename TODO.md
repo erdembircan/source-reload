@@ -1,5 +1,9 @@
-## 📋 TODO
+### 📋 TODO
 
 - [] rollup setup
-- [] testing setup
+- [x] linting
+- [x] testing setup
   - mocha, chai
+
+### 📈 GOALS
+- keep `TDD` alive

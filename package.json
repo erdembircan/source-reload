@@ -4,9 +4,22 @@
   "description": "> Make Love, Not Warcraft",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit:dev": "mocha --watch --require test/mocha-setup.js --require @babel/register test/spec/**/*.spec.js"
   },
   "keywords": [],
   "author": "Erdem Bircan",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jsdom": "^13.2.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^6.0.2"
+  }
 }
