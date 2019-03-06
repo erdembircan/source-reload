@@ -1,0 +1,8 @@
+{
+  "configs": [
+    {
+      "input": "src/index.js",
+      "output": { "file": "dist/source-reload-common.js", "format": "cjs" }
+    }
+  ]
+}
