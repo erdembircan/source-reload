@@ -4,9 +4,11 @@
   "description": "> Make Love, Not Warcraft",
   "main": "index.js",
   "scripts": {
-    "test:unit:dev": "mocha --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "test:unit:dev": "nyc mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
     "build:dev": "rollup -w -c build/devConfig.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "coverage": "nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "test": "npm run lint && npm run coverage"
   },
   "keywords": [],
   "author": "Erdem Bircan",
@@ -24,6 +26,7 @@
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "rollup": "^1.4.1",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-commonjs": "^9.2.1",

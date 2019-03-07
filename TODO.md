@@ -6,7 +6,7 @@
 - [x] linting
 - [x] testing setup
   - mocha, chai
-  - [] learn more about test coverage
+  - [x] learn more about test coverage
 
 ### 📈 GOALS
 
