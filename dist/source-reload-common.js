@@ -5,5 +5,6 @@
   */
 'use strict';
 
-var test = 'test';
-console.log(test);
+var index = { };
+
+module.exports = index;
