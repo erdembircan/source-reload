@@ -9,6 +9,11 @@ function SourceReloadClient(url) {
   if (!(this instanceof SourceReloadClient)) {
     return new SourceReloadClient(url);
   }
+
+  if (!EventSource) {
+    throw new Error('EventSource is not defined, either use a pollyfill or try at another browser');
+  }
+
   this.streamUrl = url;
   this.connectionLost = false;
 

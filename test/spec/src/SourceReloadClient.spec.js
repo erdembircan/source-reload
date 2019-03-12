@@ -1,4 +1,5 @@
 import sinon from 'sinon';
+import { expect } from 'chai';
 import SourceReloadClient from '../../../src/SourceReloadClient';
 import SourceEventMock from '../../mocks/SourceEvent.mock';
 
@@ -21,7 +22,6 @@ beforeEach(() => {
 
 // after test operations
 afterEach(() => {
-  
   // restoring globals
   reloadMock = null;
   global.window = windowBackup;
@@ -32,6 +32,11 @@ describe('SourceReloadClient', () => {
   it('should be a self defining class', () => {
     const tempClient = SourceReloadClient('test/url');
     expect(tempClient).to.be.instanceof(SourceReloadClient);
+  });
+  it('should be checking for availability of EventSource', () => {
+    // removing EventSource from global
+    delete global.EventSource;
+    expect(() => SourceReloadClient('test/url')).to.throw(Error);
   });
   it('should reload browser depending on the inner logic', () => {
     const tempClient = SourceReloadClient('test/url');
