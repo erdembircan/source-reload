@@ -10,4 +10,7 @@ describe('mocha setup', () => {
   it('should be using ES modules', () => {
     expect(chaiExpect).to.not.be.undefined;
   });
+  it('should be on test env', () => {
+    expect(process.env.NODE_ENV).to.be.equal('test');
+  });
 });

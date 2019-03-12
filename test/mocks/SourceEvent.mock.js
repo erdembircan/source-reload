@@ -13,6 +13,8 @@ function SourceEventMock(url) {
     this.events[type] = callback;
   };
 
+  // mock function to call specific events added with addEventListener
+  // for further testing
   this.callEvent = function callEvent(eventType) {
     this.events[eventType]();
   };

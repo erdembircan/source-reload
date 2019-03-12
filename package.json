@@ -4,10 +4,10 @@
   "description": "> Make Love, Not Warcraft",
   "main": "index.js",
   "scripts": {
-    "test:unit:dev": "mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "test:unit:dev": "cross-env NODE_ENV=test mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
     "build:dev": "rollup -w -c build/devConfig.js",
     "lint": "eslint src",
-    "coverage": "nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
     "test": "npm run lint && npm run coverage"
   },
   "keywords": [],
@@ -19,7 +19,9 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "@types/mocha": "^5.2.6",
+    "babel-plugin-istanbul": "^5.1.1",
     "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -32,5 +34,9 @@
     "rollup-plugin-commonjs": "^9.2.1",
     "rollup-plugin-node-resolve": "^4.0.1",
     "sinon": "^7.2.7"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
   }
 }
