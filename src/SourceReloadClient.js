@@ -19,16 +19,28 @@ function SourceReloadClient(url) {
 
   this.client = new EventSource(this.streamUrl);
 
-  this.client.addEventListener('open', () => {
+  /*
+   * @function reloadLogic - function that contains reload logic for open event
+   */
+  function reloadLogic() {
     if (this.connectionLost) {
       window.location.reload();
+    } else {
+      logger(this.name, 'connected to host');
     }
-    logger(this.name, 'connected to host');
-  });
+  }
 
-  this.client.addEventListener('error', () => {
+  /*
+   * @function connectionLostLogic - function that contains reload logic for error event
+   */
+  function connectionLostLogic() {
     this.connectionLost = true;
-  });
+    logger(this.name, 'connection lost, reconnecting...');
+  }
+
+  this.client.addEventListener('open', reloadLogic.bind(this));
+
+  this.client.addEventListener('error', connectionLostLogic.bind(this));
 }
 
 /** @module SourceReloadClient */

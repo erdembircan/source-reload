@@ -1,3 +1,4 @@
+// TODO change EOL to http standart end of line
 import { EOL } from 'os';
 
 /**

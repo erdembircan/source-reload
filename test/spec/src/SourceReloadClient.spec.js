@@ -35,11 +35,16 @@ describe('SourceReloadClient', () => {
   });
   it('should be checking for availability of EventSource', () => {
     // removing EventSource from global
-    delete global.EventSource;
-    expect(() => SourceReloadClient('test/url')).to.throw(Error);
+    global.EventSource = undefined;
+    expect(() => new SourceReloadClient('test/url')).to.throw(Error);
   });
   it('should reload browser depending on the inner logic', () => {
     const tempClient = SourceReloadClient('test/url');
+
+    // emulating first connection
+    tempClient.client.callEvent('open');
+
+    // emulating disconnect
     tempClient.client.callEvent('error');
 
     // should change the connection lost checker to false
@@ -47,6 +52,7 @@ describe('SourceReloadClient', () => {
     // function to point to client context instead of the SourceEvent context
     expect(tempClient.connectionLost).to.be.equal(true);
 
+    // emulating reconnection
     tempClient.client.callEvent('open');
 
     // will call window.location.reload
