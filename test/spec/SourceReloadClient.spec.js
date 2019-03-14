@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import SourceReloadClient from '../../../src/SourceReloadClient';
-import SourceEventMock from '../../mocks/SourceEvent.mock';
+import SourceReloadClient from '../../src/SourceReloadClient';
+import SourceEventMock from '../mocks/SourceEvent.mock';
 
 let reloadMock;
 let windowBackup;

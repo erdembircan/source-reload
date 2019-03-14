@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import generateConfigs from '../../../build/generateConfigs';
+import generateConfigs from '../../build/generateConfigs';
 
 const { toString } = Object.prototype;
 

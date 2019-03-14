@@ -4,13 +4,47 @@
     <meta charset="UTF-8" />
     <title>Source Reload</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <script
       type="text/javascript"
       src="dist/source-reload-client-umd.js"
     ></script>
   </head>
   <body>
-    <h2>Hello World</h2>
+    <nav class="navbar navbar-default bg-light">
+      <a class="navbar-brand">🔄 source-reload</a>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a
+            class="btn btn-primary"
+            href="https://github.com/erdembircan/source-reload"
+            target="_blank"
+          >
+            <i class="fab fa-github-alt"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="jumbotron">
+      <h1 class="display-4">source-reload</h1>
+      <p class="lead">
+        Last server restart was at
+        <span id="srT" style="color:green">0</span>
+      </p>
+      <hr class="my-4" />
+      <pre class="text-muted">Erdem Bircan 2019</pre>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

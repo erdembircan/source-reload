@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "example:server": "nodemon ./example/server/",
-    "test:unit:dev": "cross-env NODE_ENV=test mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "test:unit:dev": "cross-env NODE_ENV=test mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js",
     "build:dev": "rollup -w -c build/devConfig.js",
     "lint": "eslint src",
-    "coverage": "cross-env NODE_ENV=test nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js test/spec/**/*.spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js",
     "test": "npm run lint && npm run coverage"
   },
   "keywords": [],

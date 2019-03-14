@@ -57,7 +57,7 @@ function SourceReloadClient(url) {
    */
   function connectionLostLogic() {
     this.connectionLost = true;
-    logger(SourceReloadClient, 'connection lost, reconnecting...');
+    logger('SourceReloadClient', 'connection lost, reconnecting...');
   }
 
   this.client.addEventListener('open', reloadLogic.bind(this));
