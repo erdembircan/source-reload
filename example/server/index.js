@@ -6,7 +6,7 @@ const Server = require('./server');
 setTimeout(() => {
   console.log('💾 writing to file to force restart');
   const tempJson = {
-    time: new Date().toLocaleTimeString(),
+    time: new Date().toLocaleTimeString('en-US', { hour12: false }),
   };
   fs.writeFileSync(path.resolve(__dirname, 'last_restart.json'), JSON.stringify(tempJson));
 }, 8000);

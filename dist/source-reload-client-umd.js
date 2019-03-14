@@ -23,7 +23,9 @@
   function logger(callerName, message, level) {
     if ( level === void 0 ) level = 0;
 
-    console.log(("[" + callerName + "]: (" + (logLevels[level].toUpperCase()) + ") " + message));
+    var formatted = "[" + callerName + "]: (" + (logLevels[level].toUpperCase()) + ") " + message;
+    console.log(formatted);
+    return formatted;
   }
 
   /**
@@ -45,7 +47,14 @@
 
     this.client = new EventSource(this.streamUrl);
 
-    /*
+    // browsers have different reconnect intervals for event-stream
+    // so we will be using some kind of a race condition here
+    // either browser will auto connect with reloadLogic
+    // or our connectionLostLogic with ping approach
+
+    // TODO write tests for both logics
+
+    /**
      * @function reloadLogic - function that contains reload logic for open event
      */
     function reloadLogic() {
@@ -56,12 +65,29 @@
       }
     }
 
-    /*
+    /**
      * @function connectionLostLogic - function that contains reload logic for error event
      */
     function connectionLostLogic() {
       this.connectionLost = true;
       logger('SourceReloadClient', 'connection lost, reconnecting...');
+
+      /**
+       * @function ping - recursive function for pinging
+       *
+       * @param {string} pingUrl - url to ping
+       * @param {number} [timeout = 200] - ms to wait for next try
+       */
+      function ping(pingUrl, timeout) {
+        if ( timeout === void 0 ) timeout = 200;
+
+        /* eslint-disable no-unused-vars */
+        fetch(pingUrl).then(function (res) { return window.location.reload(); }).catch(function () {
+          setTimeout(function () { return ping(pingUrl); }, timeout);
+        });
+        /* eslint-enable */
+      }
+      ping(this.streamUrl);
     }
 
     this.client.addEventListener('open', reloadLogic.bind(this));

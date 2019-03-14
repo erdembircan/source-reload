@@ -39,6 +39,8 @@ describe('SourceReloadClient', () => {
     expect(() => new SourceReloadClient('test/url')).to.throw(Error);
   });
   it('should reload browser depending on the inner logic', () => {
+    global.fetch = function fetchMock() { return new Promise((res, rej) => res()); };
+
     const tempClient = SourceReloadClient('test/url');
 
     // emulating first connection

@@ -13,6 +13,7 @@ const banner =
   * Erdem Bircan - ${new Date().getFullYear()}
   * @licence ${packageDetails.license}
   */`;
+/* eslint-enable */
 
 function generateConfigs(configArray) {
   return configArray.map(({ input: inputOption, output: outputOptions }) => ({

@@ -13,7 +13,7 @@
 - ~~checkout `codecov` for code-coverage reports~~
 - [x] front-end client
 - [x] back-end client
-- [] an example usage
+- [x] an example usage
 
 ## 📈 GOALS
 
