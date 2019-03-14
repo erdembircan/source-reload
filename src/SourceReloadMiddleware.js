@@ -1,6 +1,4 @@
-// TODO change EOL to http standart end of line
-import { EOL } from 'os';
-
+const EOL = '\n';
 /**
  * @function SourceReloadMiddleware - event-stream middleware for Express.js
  *
@@ -16,7 +14,7 @@ function SourceReloadMiddleware(req, res) {
     'Content-Type': 'text/event-stream',
   });
 
-  res.write();
+  res.write(EOL);
   res.write(`id: 1${EOL}`);
   res.write(`event: reload${EOL}${EOL}`);
   res.write(EOL);

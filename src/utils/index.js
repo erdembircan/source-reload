@@ -10,5 +10,5 @@ const logLevels = ['info', 'warning', 'error'];
 
 /* eslint-disable import/prefer-default-export */
 export function logger(callerName, message, level = 0) {
-  console.log(`[${callerName}]: (${logLevels[level]}.toUpperCase()) ${message}`);
+  console.log(`[${callerName}]: (${logLevels[level].toUpperCase()}) ${message}`);
 }

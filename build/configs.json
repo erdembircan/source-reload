@@ -3,6 +3,14 @@
     {
       "input": "src/index.js",
       "output": { "file": "dist/source-reload-common.js", "format": "cjs" }
+    },
+    {
+      "input": "src/SourceReloadClient.js",
+      "output": {
+        "file": "dist/source-reload-client-umd.js",
+        "name": "SourceReloadClient",
+        "format": "umd"
+      }
     }
   ]
 }

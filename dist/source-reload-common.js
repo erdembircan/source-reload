@@ -5,8 +5,6 @@
   */
 'use strict';
 
-var os = require('os');
-
 var logLevels = ['info', 'warning', 'error'];
 
 /**
@@ -21,7 +19,7 @@ var logLevels = ['info', 'warning', 'error'];
 function logger(callerName, message, level) {
   if ( level === void 0 ) level = 0;
 
-  console.log(("[" + callerName + "]: (" + (logLevels[level]) + ".toUpperCase()) " + message));
+  console.log(("[" + callerName + "]: (" + (logLevels[level].toUpperCase()) + ") " + message));
 }
 
 /**
@@ -30,8 +28,6 @@ function logger(callerName, message, level) {
  * @param {string} url - backend url for connecting to EventStream
  */
 function SourceReloadClient(url) {
-  var this$1 = this;
-
   if (!(this instanceof SourceReloadClient)) {
     return new SourceReloadClient(url);
   }
@@ -45,18 +41,31 @@ function SourceReloadClient(url) {
 
   this.client = new EventSource(this.streamUrl);
 
-  this.client.addEventListener('open', function () {
-    if (this$1.connectionLost) {
+  /*
+   * @function reloadLogic - function that contains reload logic for open event
+   */
+  function reloadLogic() {
+    if (this.connectionLost) {
       window.location.reload();
+    } else {
+      logger('SourceReloadClient', 'connected to host');
     }
-    logger(this$1.name, 'connected to host');
-  });
+  }
 
-  this.client.addEventListener('error', function () {
-    this$1.connectionLost = true;
-  });
+  /*
+   * @function connectionLostLogic - function that contains reload logic for error event
+   */
+  function connectionLostLogic() {
+    this.connectionLost = true;
+    logger(SourceReloadClient, 'connection lost, reconnecting...');
+  }
+
+  this.client.addEventListener('open', reloadLogic.bind(this));
+
+  this.client.addEventListener('error', connectionLostLogic.bind(this));
 }
 
+var EOL = '\n';
 /**
  * @function SourceReloadMiddleware - event-stream middleware for Express.js
  *
@@ -72,10 +81,10 @@ function SourceReloadMiddleware(req, res) {
     'Content-Type': 'text/event-stream',
   });
 
-  res.write();
-  res.write(("id: 1" + os.EOL));
-  res.write(("event: reload" + os.EOL + os.EOL));
-  res.write(os.EOL);
+  res.write(EOL);
+  res.write(("id: 1" + EOL));
+  res.write(("event: reload" + EOL + EOL));
+  res.write(EOL);
 }
 
 /** @module SourceReload */
