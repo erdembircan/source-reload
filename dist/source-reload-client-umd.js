@@ -52,8 +52,6 @@
     // either browser will auto connect with reloadLogic
     // or our connectionLostLogic with ping approach
 
-    // TODO write tests for both logics
-
     /**
      * @function reloadLogic - function that contains reload logic for open event
      */

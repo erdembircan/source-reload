@@ -15,6 +15,12 @@ const banner =
   */`;
 /* eslint-enable */
 
+/**
+ * @function generateConfigs - generate rollup configs
+ *
+ * @param {array} configArray - config array
+ * @return {array} - an array contains rollup configs
+ */
 function generateConfigs(configArray) {
   return configArray.map(({ input: inputOption, output: outputOptions }) => ({
     input: {
@@ -29,4 +35,4 @@ function generateConfigs(configArray) {
   }));
 }
 
-module.exports = generateConfigs;
+module.exports.generateConfigs = generateConfigs;

@@ -1,4 +1,4 @@
-const generateConfigs = require('./generateConfigs');
+const { generateConfigs } = require('./build');
 const confData = require('./configs.json');
 
 // const { input, output } = generateConfigs(confData.configs)[0];
