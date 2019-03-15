@@ -2,6 +2,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import SourceReloadClient from '../../src/SourceReloadClient';
 import SourceEventMock from '../mocks/SourceEvent.mock';
+import FetchMock from '../mocks/fetch.mock';
 
 let reloadMock;
 let windowBackup;
@@ -38,8 +39,8 @@ describe('SourceReloadClient', () => {
     global.EventSource = undefined;
     expect(() => new SourceReloadClient('test/url')).to.throw(Error);
   });
-  it('should reload browser depending on the inner logic', () => {
-    global.fetch = function fetchMock() { return new Promise((res, rej) => res()); };
+  it('should reload browser with reloadLogic', () => {
+    global.fetch = FetchMock(true);
 
     const tempClient = SourceReloadClient('test/url');
 
@@ -59,5 +60,16 @@ describe('SourceReloadClient', () => {
 
     // will call window.location.reload
     expect(reloadMock.called).to.be.equal(true);
+  });
+  it('should reload browser with connectionLostLogic', (done) => {
+    global.fetch = FetchMock();
+    
+    const tempClient = SourceReloadClient('test/url');
+
+    global.window.location.reload = function () {
+      expect(true).to.be.equal(true);
+      done();
+    };
+    tempClient.client.callEvent('error');
   });
 });
