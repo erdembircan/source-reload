@@ -48,8 +48,7 @@ describe('SourceReloadClient', () => {
     tempClient.client.callEvent('open');
 
     // emulating disconnect
-    tempClient.client.callEvent('error');
-
+      tempClient.client.callEvent('error');
     // should change the connection lost checker to false
     // this will also make sure that we correctly binded the callback
     // function to point to client context instead of the SourceEvent context
@@ -63,7 +62,7 @@ describe('SourceReloadClient', () => {
   });
   it('should reload browser with connectionLostLogic', (done) => {
     global.fetch = FetchMock();
-    
+
     const tempClient = SourceReloadClient('test/url');
 
     global.window.location.reload = function () {

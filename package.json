@@ -9,6 +9,7 @@
     "build:dev": "rollup -w -c build/devConfig.js",
     "lint": "eslint src",
     "coverage": "cross-env NODE_ENV=test nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "npm run lint && npm run coverage"
   },
   "keywords": [],
@@ -22,6 +23,7 @@
     "@types/mocha": "^5.2.6",
     "babel-plugin-istanbul": "^5.1.1",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -30,6 +32,7 @@
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.0.2",
+    "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.18.10",
     "nyc": "^13.3.0",
     "rollup": "^1.4.1",
