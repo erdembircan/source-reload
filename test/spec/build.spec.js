@@ -1,10 +1,11 @@
 import { expect } from 'chai';
-import { generateConfigs } from '../../build/build.js';
+import { generateConfigs, getSize, build } from '../../build/build.js';
+import { configs } from '../../build/configs.json';
 
 const { toString } = Object.prototype;
 
-describe('config', () => {
-  it('should generate correct configs based on args', () => {
+describe('build', () => {
+  it('generateConfigs should generate correct configs based on args', () => {
     const fakeConfig = [
       { input: 'fake/path/to/entryfile.js', output: { file: 'entryfile-rolledup-common.js', format: 'cjs' } },
       { input: 'fake/path/to/entryfile.js', output: { file: 'entryfile-rolledup-umd.js', format: 'umd' } },
@@ -17,5 +18,16 @@ describe('config', () => {
       expect(c).to.haveOwnProperty('input');
       expect(c).to.haveOwnProperty('output');
     }
+  });
+
+  it('getSize should return correct size', () => {
+    const testContent = Array.from({ length: 1024 }, (_, i) => 0).join('');
+
+    expect(getSize(testContent)).to.be.equal(1);
+  });
+
+
+  it('should successfully build packages', async () => {
+     expect(build(generateConfigs(configs))).to.eventually.fulfilled;
   });
 });

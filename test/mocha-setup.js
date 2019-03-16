@@ -1,3 +1,6 @@
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 require('jsdom-global')();
 
-global.expect = require('chai').expect;
+chai.use(chaiAsPromised);
+global.expect = chai.expect;

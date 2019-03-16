@@ -25,8 +25,11 @@ beforeEach(() => {
 afterEach(() => {
   // restoring globals
   reloadMock = null;
-  global.window = windowBackup;
   delete global.EventSource;
+});
+
+after(() => {
+  global.window = windowBackup;
 });
 
 describe('SourceReloadClient', () => {
@@ -48,7 +51,7 @@ describe('SourceReloadClient', () => {
     tempClient.client.callEvent('open');
 
     // emulating disconnect
-      tempClient.client.callEvent('error');
+    tempClient.client.callEvent('error');
     // should change the connection lost checker to false
     // this will also make sure that we correctly binded the callback
     // function to point to client context instead of the SourceEvent context

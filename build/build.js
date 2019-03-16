@@ -1,10 +1,11 @@
 const path = require('path');
+const rollup = require('rollup');
 const node = require('rollup-plugin-node-resolve');
 const buble = require('rollup-plugin-buble');
 const cjs = require('rollup-plugin-commonjs');
 const packageDetails = require('../package.json');
 
-const resolve = p => path.resolve(__dirname, '..', p);
+const resolve = p => path.resolve(__dirname, '../', p);
 
 /* eslint-disable operator-linebreak */
 const banner =
@@ -35,4 +36,33 @@ function generateConfigs(configArray) {
   }));
 }
 
-module.exports.generateConfigs = generateConfigs;
+
+/**
+ * @function getSize - get size of code in kb
+ *
+ * @param {string} content - code content
+ * @return {number} - size in kb
+ */
+function getSize(content) {
+  return content.length / 1024;
+}
+
+/**
+ * @function build - build and write packages
+ * 
+ * @param {array} configs - array of rollup configurations
+ * @returns {Promise} - a promise
+ */
+async function build(configs) {
+  for (const { input: inputOptions, output: outputOptions } of configs) {
+    const bundle = await rollup.rollup(inputOptions);
+    const { output } = await bundle.generate(outputOptions);
+
+    for (const { code, file } of output) {
+      // TODO write to disk
+    }
+  }
+}
+
+
+module.exports = { generateConfigs, getSize, build };
