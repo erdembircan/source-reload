@@ -11,6 +11,10 @@
         "name": "SourceReloadClient",
         "format": "umd"
       }
+    },
+    {
+      "input": "src/index.js",
+      "output": { "file": "dist/source-reload-esm.js", "format": "esm" }
     }
   ]
 }

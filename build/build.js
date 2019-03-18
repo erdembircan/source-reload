@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const rollup = require('rollup');
 const node = require('rollup-plugin-node-resolve');
 const buble = require('rollup-plugin-buble');
@@ -36,7 +37,6 @@ function generateConfigs(configArray) {
   }));
 }
 
-
 /**
  * @function getSize - get size of code in kb
  *
@@ -44,25 +44,39 @@ function generateConfigs(configArray) {
  * @return {number} - size in kb
  */
 function getSize(content) {
-  return content.length / 1024;
+  return (content.length / 1024).toFixed(2);
 }
 
 /**
- * @function build - build and write packages
- * 
- * @param {array} configs - array of rollup configurations
- * @returns {Promise} - a promise
+ * @function write - write content to disk
+ *
+ * @param {string} target - target path
+ * @param {string} content - content to be written
+ * @return {Promise} - promise object
  */
-async function build(configs) {
-  for (const { input: inputOptions, output: outputOptions } of configs) {
-    const bundle = await rollup.rollup(inputOptions);
-    const { output } = await bundle.generate(outputOptions);
-
-    for (const { code, file } of output) {
-      // TODO write to disk
+function write(target, content) {
+  return new Promise((res, rej) => {
+    let parsedPath;
+    try {
+      parsedPath = path.parse(target);
+    } catch (e) {
+      return rej(e);
     }
-  }
+
+    if (!fs.existsSync(parsedPath.dir)) {
+      fs.mkdirSync(parsedPath.dir, { recursive: true });
+    }
+
+    fs.writeFile(target, content, 'utf8', (err) => {
+      if (err) {
+        return rej(Error(`An error occured: ${err}`));
+      }
+      return res(getSize(content));
+    });
+  });
 }
 
-
-module.exports = { generateConfigs, getSize, build };
+/** @module build */
+module.exports = {
+  generateConfigs, getSize, write,
+};

@@ -2,19 +2,34 @@
   "name": "source-reload",
   "version": "1.0.0",
   "description": "> Make Love, Not Warcraft",
-  "main": "index.js",
+  "author": "Erdem Bircan",
+  "license": "MIT",
+  "main": "./dist/source-reload-common.js",
+  "module": "./dist/source-reload-esm.js",
+  "browser": "./dist/source-reload-client-umd.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erdembircan/source-reload"
+  },
+  "files": [
+    "dist/*.js"
+  ],
+  "keywords": [
+    "reload",
+    "event-stream",
+    "EventSource",
+    "middleware"
+  ],
   "scripts": {
     "example:server": "nodemon ./example/server/",
     "test:unit:dev": "cross-env NODE_ENV=test mocha --reporter min --watch --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js",
     "build:dev": "rollup -w -c build/devConfig.js",
+    "build": "node build/index.js",
     "lint": "eslint src",
     "coverage": "cross-env NODE_ENV=test nyc mocha --require test/mocha-setup.js --require @babel/register test/spec/*.spec.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "npm run lint && npm run coverage"
   },
-  "keywords": [],
-  "author": "Erdem Bircan",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
