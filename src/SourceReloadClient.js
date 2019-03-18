@@ -40,7 +40,7 @@ function SourceReloadClient(url) {
    */
   function connectionLostLogic() {
     this.connectionLost = true;
-    logger('SourceReloadClient', 'connection lost, reconnecting...');
+    logger('SourceReloadClient', 'connection lost, reconnecting...', 2);
 
     /**
      * @function ping - recursive function for pinging
