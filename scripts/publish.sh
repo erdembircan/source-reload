@@ -9,6 +9,7 @@ if [[ $res =~ ^[yY]$ ]]
 then
   npm test
   npm run build
+  npm publish
 else
   echo "operation canceled"
 fi
