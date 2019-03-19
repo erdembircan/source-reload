@@ -8,7 +8,7 @@ Sometimes you may want to reflect the changes on your server/api endpoints to yo
 Please checkout out the `example` folder for sample usage. 
 ```bash
 # start example server
-npm start example:server
+npm run example:server
 ```
 
 ## API

@@ -1,6 +1,6 @@
 {
   "name": "source-reload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "client side browser reloader for server side changes",
   "author": "Erdem Bircan",
   "license": "MIT",
@@ -18,7 +18,8 @@
     "reload",
     "event-stream",
     "EventSource",
-    "middleware"
+    "middleware",
+    "nodejs"
   ],
   "scripts": {
     "example:server": "nodemon ./example/server/",

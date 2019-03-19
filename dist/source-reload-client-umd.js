@@ -1,5 +1,5 @@
 /*!
-  * source-reload v1.0.0
+  * source-reload v1.0.1
   * Erdem Bircan - 2019
   * @licence MIT
   */
