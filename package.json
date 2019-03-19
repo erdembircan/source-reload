@@ -1,7 +1,7 @@
 {
   "name": "source-reload",
   "version": "1.0.0",
-  "description": "> Make Love, Not Warcraft",
+  "description": "client side browser reloader for server side changes",
   "author": "Erdem Bircan",
   "license": "MIT",
   "main": "./dist/source-reload-common.js",
