@@ -15,7 +15,6 @@ async function build(configs) {
     const { output } = await bundle.generate(outputOptions);
 
     for (const { code, fileName } of output) {
-      // TODO write to disk
       try {
         const s = await write(outputOptions.file, code);
         console.log(`${fileName}: ${s}kb`);
