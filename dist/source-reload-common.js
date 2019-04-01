@@ -6,6 +6,10 @@
 'use strict';
 
 var logLevels = ['info', 'warning', 'error'];
+var callerFormat = 'font-weight: bold';
+var callerDefaultFormat = 'font-weight: inherit';
+var levelFormat = 'background-color:blue; border-radius:10%; color:white';
+var defaultFormat = 'background-color:inherit; border-radius:0; color:inherit';
 
 /**
  * @function logger - log messages to default consoles with loglevels
@@ -19,8 +23,8 @@ var logLevels = ['info', 'warning', 'error'];
 function logger(callerName, message, level) {
   if ( level === void 0 ) level = 0;
 
-  var formatted = "[" + callerName + "]: (" + (logLevels[level].toUpperCase()) + ") " + message;
-  console.log(formatted);
+  var formatted = "[%c" + callerName + "%c]: %c(" + (logLevels[level].toUpperCase()) + ")%c " + message;
+  console.log(formatted, callerFormat, callerDefaultFormat, levelFormat, defaultFormat);
   return formatted;
 }
 

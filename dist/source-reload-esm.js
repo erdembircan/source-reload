@@ -4,6 +4,8 @@
   * @licence MIT
   */
 var logLevels = ['info', 'warning', 'error'];
+var levelFormat = '{background-color:blue; border-radius:20%;}';
+var defaultFormat = '{background-color:inherit; border-radius:0;}';
 
 /**
  * @function logger - log messages to default consoles with loglevels
@@ -17,8 +19,8 @@ var logLevels = ['info', 'warning', 'error'];
 function logger(callerName, message, level) {
   if ( level === void 0 ) level = 0;
 
-  var formatted = "[" + callerName + "]: (" + (logLevels[level].toUpperCase()) + ") " + message;
-  console.log(formatted);
+  var formatted = "[" + callerName + "]: %c(" + (logLevels[level].toUpperCase()) + ")%c " + message;
+  console.log(formatted, levelFormat, defaultFormat);
   return formatted;
 }
 

@@ -1,4 +1,8 @@
 const logLevels = ['info', 'warning', 'error'];
+const callerFormat = 'font-weight: bold';
+const callerDefaultFormat = 'font-weight: inherit';
+const levelFormat = 'background-color:blue; border-radius:10%; color:white';
+const defaultFormat = 'background-color:inherit; border-radius:0; color:inherit';
 
 /**
  * @function logger - log messages to default consoles with loglevels
@@ -10,7 +14,7 @@ const logLevels = ['info', 'warning', 'error'];
 
 /* eslint-disable import/prefer-default-export */
 export function logger(callerName, message, level = 0) {
-  const formatted = `[${callerName}]: (${logLevels[level].toUpperCase()}) ${message}`;
-  console.log(formatted);
+  const formatted = `[%c${callerName}%c]: %c(${logLevels[level].toUpperCase()})%c ${message}`;
+  console.log(formatted, callerFormat, callerDefaultFormat, levelFormat, defaultFormat);
   return formatted;
 }
